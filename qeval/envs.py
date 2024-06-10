@@ -65,6 +65,31 @@ class QTurtleDefaultEnv(py_environment.PyEnvironment):
         return np.array(state, dtype=np.float32)
 
 
+class QTurtleLidarEnv(QTurtleDefaultEnv):
+    def __init__(self, env, gui=False):
+        self._env = qturtle.make(env, gui=gui)
+
+        min_action = 0
+        max_action = min_action + self._env.action_space.n - 1
+
+        self._action_spec = array_spec.BoundedArraySpec(
+            shape=(), dtype=np.int32,
+            minimum=min_action,
+            maximum=max_action
+        )
+
+        max_dist = np.sqrt(244)
+
+        self._observation_spec = array_spec.BoundedArraySpec(
+            shape=(12,), dtype=np.float32,
+            minimum=np.array([0.]*11 + [-np.pi], dtype=np.float32),
+            maximum=np.array([max_dist]*11 + [np.pi], dtype=np.float32)
+        )
+
+        self._state = None
+        self._episode_ended = False
+
+
 def get_default_envs(env, max_steps, validate=False):
 
     if env == "CartPole-v1":
@@ -74,6 +99,10 @@ def get_default_envs(env, max_steps, validate=False):
     elif env == "FrozenLake-v1":
         train_py_env = wrappers.TimeLimit(FrozenLake(), max_steps)
         eval_py_env = wrappers.TimeLimit(FrozenLake(), max_steps)
+
+    elif env.startswith('LIDAR'):
+        train_py_env = wrappers.TimeLimit(QTurtleLidarEnv(env), max_steps)
+        eval_py_env = wrappers.TimeLimit(QTurtleLidarEnv(env), max_steps)
 
     else:
         train_py_env = wrappers.TimeLimit(QTurtleDefaultEnv(env), max_steps)

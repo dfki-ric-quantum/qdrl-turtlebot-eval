@@ -15,7 +15,7 @@ def create_measurement(num_qubits=3, env='qturtle'):
         measurement.append(cirq.Z(qubits[0]) * cirq.Z(qubits[1]))
         measurement.append(cirq.Z(qubits[2]) * cirq.Z(qubits[3]))
 
-    elif num_qubits == 3:
+    elif num_qubits == 3 or num_qubits == 12:
         measurement.append(cirq.Z(qubits[0]))
         measurement.append(cirq.Z(qubits[1]))
         measurement.append(cirq.Z(qubits[2]))
