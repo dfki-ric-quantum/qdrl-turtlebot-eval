@@ -60,7 +60,7 @@ and German Aerospace Center e.V. (DLR e.V.) under project number 50RA2033 (DFKI)
 Learning for Intelligent and Robotic Systems).
 
 ## References
-* [1] Heimann, D., Hohenfeld, H., Wiebe, F., & Kirchner, F. (2022). *Quantum deep reinforcement learning for robot navigation tasks*. arXiv preprint [arXiv:2202.12180](https://arxiv.org/abs/2202.12180).
+* [1] H. Hohenfeld, D. Heimann, F. Wiebe and F. Kirchner, "Quantum Deep Reinforcement Learning for Robot Navigation Tasks," in IEEE Access, vol. 12, pp. 87217-87236, 2024, doi: 10.1109/ACCESS.2024.3417808
 
 <a href="https://robotik.dfki-bremen.de/en/"><img src="doc/img/DFKI.jpg" height="30px" /></a>
 <a href="https://www.uni-bremen.de/en/"><img src="doc/img/uhb.png" height="30px" /></a>
